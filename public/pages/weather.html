@@ -138,18 +138,22 @@
           
 
 	    </div>
-	    <div class="col-sm-4 pull-right" style="background-color: rgb(248,248,248);border-radius: 15px;margin-right: -37px;width: 37%;">
+	    <div class="col-sm-4 pull-right history_box" >
 	    	<div class="searchHistory_style">Search History</div>
-	    	<div style="border-bottom: 1px solid #b9b9b9;margin-bottom: 1px;" class="col-sm-12 hover_style" ng-repeat="city in SearchHistoryList track by $index">
+	    	<a href="" >
+	    	<div ng-click="weatherReport(city.latitude,city.longitude,city.city)" style="border-bottom: 1px solid #b9b9b9;margin-bottom: 1px;cursor:pointer" class="col-sm-12 hover_style" ng-repeat="city in SearchHistoryList track by $index">
+	    	
 	    	  <span>{{$index+1}})<a href="" style="text-decoration: none" ng-click="weatherReport(city.latitude,city.longitude,city.city)"> {{city.city}}</a>
 	    	  </span>
 	    	  <p>
 	    	   <span class="history_date_style">
 	    	    &nbsp; &nbsp; &nbsp;{{city.created_at|date:"short"}}</span><span>
-	    		<a href="" ng-click="searchHistoryDelete(city._id)">Delete</a>
+	    		<a href="" style="color:#690705" ng-click="searchHistoryDelete(city._id);$event.stopPropagation();">Delete</a>
 	    	  </span>
 	    	  </p>
+	    	 
 	    	</div>
+	    	</a>
 	    </div>
 	    
 
