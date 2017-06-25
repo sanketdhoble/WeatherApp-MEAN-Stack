@@ -1,9 +1,10 @@
 # WeatherApp
 Node-Angular Application to get weather Report.</br>
-Appication running on following link  --->[Heroku](https://enigmatic-brushlands-72289.herokuapp.com) 
+Appication running on following link  --> [Heroku](https://enigmatic-brushlands-72289.herokuapp.com) 
 
 ## Features </br>
--> User Authentication with session management. User is automatically logged out after 1 hour of inactivity.</br>
+-> User Registration/Login & Authentication with session management using NodeJs.</br>
+-> User is automatically logged out after 1 hour of inactivity.</br>
 -> HTML Geolocation for getting user's current location.</br>
 -> Search and autocomplete city name. Its latitude & longitude is sent for getting exact weather report.</br>
 -> Storing top 10 Searches history in MongoDb.</br>
