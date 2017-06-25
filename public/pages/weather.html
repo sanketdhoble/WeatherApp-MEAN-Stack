@@ -1,0 +1,157 @@
+<div ng-include="'pages/header.html'"></div>
+<div class="col-sm-12">
+	 <div class="clearfix"></div>
+	 <hr width="80%" align="center">
+    <div class="col-sm-12 ">
+       <div ng-show="FlashLoginSuccess" class="col-sm-4 alert alert-success fade in flash_div_pos ">
+					<a href=""  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Success!</strong> You are now logged in!!
+      </div>
+      <div class="col-sm-8">
+      		<div class="col-sm-5">
+      		<img src="images/person.jpg" width="180px" height="180px">
+      		</div>
+      		<div class="col-sm-7">
+      		 <p class="welcome_style">Welcome {{userName}}</p>
+      		 <p class="ff_style">Please select a city to view Weather</p>
+      		 <p>OR</p>
+      		 <p class="ff_style">Use Current Location to view weather</p>
+      		 <p ><a style="text-decoration: none;font-size: 16px" href="" ng-click="weatherReport(myPosition.latitude,myPosition.longitude,myAddress)">{{myAddress}}</a></p>
+      		</div>
+      </div>
+      <div class="col-sm-4">
+        <button href="" data-toggle="modal" class="btn btn-default btn-lg"  data-target="#citySelect" class="" >Select City</button>
+            <!--Pop up started-->
+              <!-- Modal -->
+              <div class="modal fade" id="citySelect" role="dialog">
+                <div class="modal-dialog mar_top90" style="display: table;">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Search City</h4>
+                    </div>
+                    <div class="modal-body">
+                       <div class="search-box-bar">
+				            <ul>
+				                <li><input class="citysearchInput" type="text" ng-model="city" ng-model-options='{ debounce: 700 }' ng-change="cityPrediction(city)" name="search" placeholder="Search City" >
+				                <ul ng-show="noSearchTerm">
+				                    <li>
+				                        <a href="" ng-show="search_loader"><div style="text-align: center;"><img src="images/loader.gif" style="width: 40px; height: auto;"></div></a>
+				                    </li>
+				                    <li>
+				                        <a href="" ng-if="predictedCities.length==0"><div style="text-align: center;">No Search Result Found</div></a>
+				                    </li>
+				                  <li ng-repeat="city in predictedCities track by $index">
+				                     <a href="" data-dismiss="modal" ng-click="cityLatLong(city.description)"><div><span><img src="images/marker2.png"  style="width:9px;height:16px;">
+									 </span>{{city.description}}</div></a>
+				                      
+				                  </li>
+				                </ul>
+				              </li>
+				            </ul>
+				          </div>
+				        </div>
+                   
+                    <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+                  <!--Pop up ends-->
+
+      
+    </div>
+    <div class="clearfix"></div>
+    <hr width="80%" align="center">
+    <span ng-include="" src="'/pages/blog-loader.html'" class="mar_top100" ng-show="weather_loader" style="z-index: 999;margin-bottom: 100px;width: 72%;margin-top:105px;"></span>
+    <div class="container">
+    	 <!-- <h3>Enter a location:</h3  	 
+    	     <input type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
+	    
+	     <h3>Results:</h3>
+	     <ul>
+	      <li>Lat: {{ lat }}</li>
+	      <li>Lng: {{ lng }}</li>
+	     </ul> -->
+	    <div class="col-sm-8" style="background-color: rgb(248,248,248);border-radius:15px;margin-left: -25px;" ng-show="show_report">
+
+		  <div class="col-sm-8" >
+		  	<form class="form-horizontal" style="padding: 30px 10px 12px;" role="form">		
+				<div class="form-group" style="font-size: 18px;">
+					<div class="col-sm-9">  
+					 <b>{{fullAddress || "--"}}</b>
+					</div>
+				</div>
+				<div class="form-group font_size_style" >
+					
+					<div class="col-sm-9">  
+					 {{date | date}} 
+					</div>
+				</div>
+				<div class="form-group">
+				    <div class="col-sm-3">
+					 <label  for="pwd">Clouds:</label>
+					</div>
+					<div class="col-sm-9">  
+					 <b>{{clouds.all}}%</b>
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3" for="pwd">visibility:</label>
+					<div class="col-sm-9">  
+					 <b>{{visibility||"--"}} <span ng-if="visibility!=undefined">m</span></b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3" for="pwd">Wind:</label>
+					<div class="col-sm-9">  
+					<b>{{wind.speed}} <span ng-if="wind.speed!=undefined">mps</span>  |  {{wind.deg}}<span ng-if="wind.deg!=undefined">&deg;</span></b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3" for="pwd">Pressure:</label>
+					<div class="col-sm-9">  
+					<b>{{main.pressure}} <span ng-if="main.pressure!=undefined">hPa</span> </b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3" for="pwd">Humidity:</label>
+					<div class="col-sm-9">  
+					<b>{{main.humidity}} <span ng-if="main.humidity!=undefined">%</span></b>
+					</div>
+				</div>
+		   </form>
+		  </div>
+		  <div class="col-sm-4 temp_style">
+		  	<p>
+		  		{{main.temp-273.15 | limitTo : 2}}&deg;C
+		  	</p>
+		  	<p class="icon_style">
+		  	<img ng-src="{{iconUrl}}">{{weather.description}}
+		  	</p>
+		  	
+		  </div>
+          
+
+	    </div>
+	    <div class="col-sm-4 pull-right" style="background-color: rgb(248,248,248);border-radius: 15px;margin-right: -37px;width: 37%;">
+	    	<div class="searchHistory_style">Search History</div>
+	    	<div style="border-bottom: 1px solid #b9b9b9;margin-bottom: 1px;" class="col-sm-12" ng-repeat="city in SearchHistoryList track by $index">
+	    	<span>{{$index+1}})<a href="" ng-click="weatherReport(city.latitude,city.longitude,city.city)"> {{city.city}}</a></span><p><span class="history_date_style">
+	    	&nbsp; &nbsp; &nbsp;{{city.created_at|date:"short"}}</span><span>
+	    		<a href="" ng-click="searchHistoryDelete(city._id)">Delete</a>
+	    	</span></p>
+	    	</div>
+	    </div>
+	    
+
+     
+    </div>
+    <!-- <div ng-include="'pages/footer.html'"></div> -->
+</div>

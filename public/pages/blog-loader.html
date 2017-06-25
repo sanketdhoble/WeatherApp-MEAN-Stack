@@ -1,0 +1,94 @@
+<div class="loader-container arc-rotate-double">
+      <div class="loader">
+        <div class="arc-1"></div>
+        <div class="arc-2"></div>
+        <span style="position:absolute; padding:150px 75px; color:#0077b5;" class="hidden-xs">Loding...</span>
+      </div>
+    </div>
+
+<style type="text/css">
+.arc-rotate-double .loader {
+  width: 200px;
+  height: 200px;
+}
+.arc-rotate-double .loader > div {
+  position: absolute;
+
+  border-radius: 50%;
+  -webkit-animation: load 1s infinite ease-in-out;
+          animation: load 1s infinite ease-in-out;
+}
+.arc-1 {
+  margin: 32% 0 0 32%;
+  width: 36%;
+  border: 2px solid;
+  border-color: transparent #0077b5;
+  height: 36%;
+}
+.arc-rotate-double .loader .arc-2 {
+  margin: 40% 0 0 40%;
+    border: 2px solid;
+  border-color: transparent #32A444;
+  width: 20%;
+  height: 20%;
+  -webkit-animation-direction: reverse;
+          animation-direction: reverse;
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+            transform: rotate(180deg) scale(0.6);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+            transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+            transform: rotate(180deg) scale(0.6);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+            transform: rotate(360deg) scale(1);
+  }
+}
+
+
+.loader-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.loader{margin-top: 25px;
+margin-left: 270px;
+ position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loader-container {
+  position: relative;
+}
+
+
+
+</style>
