@@ -1,5 +1,6 @@
 # WeatherApp
-To get weather Report based on google maps parameters
+Node-Angular Application to get weather Report.
+Appication running on following link  --->[Heroku](https://enigmatic-brushlands-72289.herokuapp.com) 
 
 ## Features </br>
 -> User Authentication with session management. User is automatically logged out after 1 hour of inactivity.</br>
