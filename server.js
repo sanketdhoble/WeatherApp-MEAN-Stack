@@ -2,6 +2,7 @@
     var app      = express();                        // create our app w/ express
     var mongoose = require('mongoose');              // mongoose for mongodb
     var crypto = require('crypto'); 
+    var bcrypt = require('bcrypt');     //password hash
     var morgan   = require('morgan');                // log requests to the console (express4)
     var api=require('./routes/api');
     var bodyParser = require('body-parser'); 

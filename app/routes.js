@@ -5,6 +5,7 @@ var mongoose=require('mongoose');
 var Profile=require('./models/user');
 var SearchHistory=require('./models/searchHistory');
 var jwt    = require('jsonwebtoken');
+var bcrypt = require('bcrypt'); 
 var session = require('express-session');
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -73,10 +74,11 @@ module.exports = function(app) {
          } 
          else
          {
+           var hash = bcrypt.hashSync(req.body.password, 10);
 
             Profile.create({
                 username : req.body.username,
-                password:req.body.password,
+                password:hash,
                 email:req.body.email,
                 done : true
               }, function(err, userDetails) {
@@ -96,11 +98,7 @@ module.exports = function(app) {
 
     });
 
-     
-
-    
-
-    //authenticate
+    //authenticate - login
     app.post('/authenticate', function(req, res) {
 
     // find the user
@@ -114,12 +112,10 @@ module.exports = function(app) {
                 res.status(410).json({ success: false, message: 'Authentication failed. User not found.' });
             } else if (user) {
 
-                // check if password matches
-                if (user.password != req.body.password) {
-                    res.status(411).json({ success: false, message: 'Authentication failed. Wrong password.' });
-                } else {
+                // check if password matches  --> bcrypt.compareSync("my password", hash);
+                if (bcrypt.compareSync(req.body.password, user.password)) {
 
-                    // if user is found and password is right
+                   // if user is found and password is right
                     // create a token
                     // var token = jwt.sign(user, 'superSecret', {
                     //     expiresIn: 86400 // expires in 24 hours
@@ -135,6 +131,10 @@ module.exports = function(app) {
                         session: req.session.user,
                         data:{"username":user.username,"password":user.password,"email":user.email,"_id":user._id,"userId":user.userId}
                     });
+                    
+                } else {
+
+                   res.status(411).json({ success: false, message: 'Authentication failed. Wrong password.' });
                 }       
 
             }
