@@ -7,6 +7,7 @@ Appication running on following link  --> [Heroku](https://enigmatic-brushlands-
 -> User is automatically logged out after 1 hour of inactivity.</br>
 -> HTML Geolocation for getting user's current location.</br>
 -> Search and autocomplete city name. Its latitude & longitude is sent for getting exact weather report.</br>
+-> Changing wearther report back-ground image based on time (morning,afternoon,night)</br>
 -> Storing top 10 Searches history in MongoDb.</br>
 -> Search History is specific to a particular user.</br>
 -> Use of Search History list to fetch weather report again.</br>

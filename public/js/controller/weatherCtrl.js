@@ -4,6 +4,21 @@ weatherApp.controller('weatherCtrl', function($scope,$rootScope,$timeout,$geoloc
         $scope.show_report=false;
         $scope.noSearchTerm=true;
         $scope.weather_loader=false;
+        $scope.morning=false;
+        $scope.afternoon=false;
+        $scope.night=false;
+        //change background image according to time
+        if($scope.date.getHours()>6&&$scope.date.getHours()<12)
+        {
+          $scope.morning=true;
+        }
+        else if($scope.date.getHours()>12&&$scope.date.getHours()<18)
+        {
+          $scope.afternoon=true;
+        }
+        else
+          $scope.night=true;
+
        $rootScope.userName=localStorage.userName;
        $rootScope.userId=localStorage.userId;
        // $location.search({})  //clear all parameters at once

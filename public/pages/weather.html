@@ -76,8 +76,7 @@
 	      <li>Lat: {{ lat }}</li>
 	      <li>Lng: {{ lng }}</li>
 	     </ul> -->
-	    <div class="col-sm-8" style="background-color: rgb(248,248,248);border-radius:15px;margin-left: -25px;" ng-show="show_report">
-
+	    <div class="col-sm-8 " ng-class="{report_morning : morning==true, report_afternoon : afternoon == true,report_night: night==true}" ng-show="show_report">
 		  <div class="col-sm-8" >
 		  	<form class="form-horizontal" style="padding: 30px 10px 12px;" role="form">		
 				<div class="form-group" style="font-size: 18px;">
@@ -126,8 +125,8 @@
 				</div>
 		   </form>
 		  </div>
-		  <div class="col-sm-4 temp_style">
-		  	<p>
+		  <div class="col-sm-4 ">
+		  	<p ng-class="{temp_style_morning : morning==true, temp_style_afternoon : afternoon == true,temp_style_night: night==true}">
 		  		{{main.temp-273.15 | limitTo : 2}}&deg;C
 		  	</p>
 		  	<p class="icon_style">

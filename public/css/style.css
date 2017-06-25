@@ -1,16 +1,4 @@
-/*For flash screen*/
-.splash {
-  display: none;
-}
 
-.splash {
-  background-color: #428bca;
-  width: 100%;
-  text-align: center;
-  color: white;
-  display: block !important;
-}
-/*Ends*/
 .login_reg_style{
 margin-top:5px;font-size:16px;text-align: center,margin-left:15px;
 }
@@ -31,9 +19,26 @@ background-color: rgb(248,248,248);border-radius: 15px;height: 215px;padding: 20
 .mar_top90{margin-top: 90px}
 .border_right{border-right: 1px solid black;
 height:400px;}
-.temp_style{margin-top: 50px;
+.temp_style_morning{
+margin-top: 50px;
 font-size: 45px;
-color: #606072;
+color: black;
+font-weight: 700;
+text-align: center;
+}
+.temp_style_afternoon{
+margin-top: 50px;
+margin-left: -15px;
+font-size: 45px;
+color: white;
+font-weight: 700;
+text-align: center;
+}
+.temp_style_night{
+margin-top: 130px;
+margin-left:-46px;
+font-size: 45px;
+color: white;
 font-weight: 700;
 text-align: center;
 }
@@ -105,6 +110,10 @@ border-color: #efefef;
     height:330px;
  
 }
+/*background-color: rgb(248,248,248);*/
+.report_morning{border-radius:15px;margin-left: -25px;color:black; background-image: url("../images/morning.jpg");background-position: center center;background-size:cover;}
+.report_afternoon{border-radius:15px;margin-left: -25px;color:white; background-image: url("../images/afternoon.jpg");background-position: center center;background-size:cover;}
+.report_night{border-radius:15px;margin-left: -25px; color: white; background-image: url("../images/night.jpg");background-position: center center;background-size:cover;}
 .history_box{background-color: rgb(248,248,248);border-radius: 15px;margin-right: -37px;width: 37%;}
 div.hover_style:hover {
     background-color: #E3E3E3;
