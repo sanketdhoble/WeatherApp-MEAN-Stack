@@ -1,5 +1,5 @@
 # WeatherApp
-Node-Angular Application to get weather Report.
+Node-Angular Application to get weather Report.</br>
 Appication running on following link  --->[Heroku](https://enigmatic-brushlands-72289.herokuapp.com) 
 
 ## Features </br>
