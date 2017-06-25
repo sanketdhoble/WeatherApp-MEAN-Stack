@@ -2,7 +2,7 @@ var mongoose     = require('mongoose');
 var crypto = require('crypto'); 
 var Schema       = mongoose.Schema;
 
-var UserSchema   = new Schema({  
+var profileSchema   = new Schema({  
     username : {type:String,required:true,dropDups: true },
     password:{type: String,required:true},
     done : Boolean,
@@ -18,4 +18,4 @@ var UserSchema   = new Schema({
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Profile', profileSchema);

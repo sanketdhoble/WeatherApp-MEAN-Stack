@@ -2,7 +2,7 @@
 
 // load the todo model
 var mongoose=require('mongoose');
-var User=require('./models/user');
+var Profile=require('./models/user');
 var SearchHistory=require('./models/searchHistory');
 var jwt    = require('jsonwebtoken');
 var session = require('express-session');
@@ -64,7 +64,7 @@ module.exports = function(app) {
     app.post('/register', function(req, res) {
 
         
-        User.findOne({email: req.body.email}, function(err, user) {
+        Profile.findOne({email: req.body.email}, function(err, user) {
 
          if (err) throw err;
 
@@ -74,7 +74,7 @@ module.exports = function(app) {
          else
          {
 
-            User.create({
+            Profile.create({
                 username : req.body.username,
                 password:req.body.password,
                 email:req.body.email,
@@ -104,7 +104,7 @@ module.exports = function(app) {
     app.post('/authenticate', function(req, res) {
 
     // find the user
-        User.findOne({
+        Profile.findOne({
             username: req.body.username
         }, function(err, user) {
 
