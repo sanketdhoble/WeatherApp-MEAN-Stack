@@ -1,6 +1,14 @@
 weatherApp.controller('loginCtrl', function($scope,$rootScope,apiFactory,$anchorScroll, $http,$window,$location,$routeParams,$timeout) {
 
         $scope.show_reg=true;
+
+
+        //flash screen loading
+        if($location.path()=='/login')
+        {
+          $scope.loaded = false;   
+          $timeout(function() { $scope.loaded = true; }, 2000);
+        }
         $scope.registration=function()
           {
             var data={
@@ -13,8 +21,7 @@ weatherApp.controller('loginCtrl', function($scope,$rootScope,apiFactory,$anchor
             .then(function (data,response) {
              
               $scope.postResponse = data.data;
-              console.log($scope.postResponse);
-               $window.alert("Registration successful,login to view blogs");
+              $window.alert("Registration successful, login now");
               $scope.userName=$scope.postResponse.username;
               $scope.userId=$scope.postResponse.userId;
               $scope.uname="";
@@ -25,7 +32,7 @@ weatherApp.controller('loginCtrl', function($scope,$rootScope,apiFactory,$anchor
               $scope.uname="";
               $scope.pass="";
               if(response.status==409)
-                  { console.log(response);
+                  { 
                     $window.alert("Username already present, Register with another one :)");
 
                   }
@@ -52,11 +59,10 @@ weatherApp.controller('loginCtrl', function($scope,$rootScope,apiFactory,$anchor
             .then(function (data,response) {
               
               $scope.postResponse = data.data;
-              console.log($scope.postResponse);
-              console.log($scope.postResponse.data);
+             
               localStorage.session=$scope.postResponse.session;
               localStorage.userName=$scope.postResponse.data.username;
-              console.log(localStorage.userName);
+              
               localStorage.userId=$scope.postResponse.data.userId;
               localStorage.email=$scope.postResponse.data.email;
               $http.defaults.headers.common.token = localStorage.session;
@@ -87,12 +93,14 @@ weatherApp.controller('loginCtrl', function($scope,$rootScope,apiFactory,$anchor
            $scope.logout = function () {
 
             // call logout from service
+            $scope.loaded=true;
             apiFactory.logout()
               .then(function () {
                 delete localStorage.session;
                  $http.defaults.headers.common.token = '';
                  $location.search({});
                  $location.path('/login');
+                  $scope.loaded=true;
 
               });
 

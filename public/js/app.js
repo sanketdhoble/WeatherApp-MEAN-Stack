@@ -1,7 +1,6 @@
 
 var weatherApp = angular.module('weatherApp', ['ngRoute','ui.bootstrap','ngGeolocation']);	
 
-
 	// configure our routes
 	weatherApp.config(function($routeProvider) {
 		$routeProvider

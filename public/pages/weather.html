@@ -2,7 +2,7 @@
 <div class="col-sm-12">
 	 <div class="clearfix"></div>
 	 <hr width="80%" align="center">
-    <div class="col-sm-12 ">
+    <div class="col-sm-12 profile_style">
        <div ng-show="FlashLoginSuccess" class="col-sm-4 alert alert-success fade in flash_div_pos ">
 					<a href=""  class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>Success!</strong> You are now logged in!!
@@ -16,7 +16,7 @@
       		 <p class="ff_style">Please select a city to view Weather</p>
       		 <p>OR</p>
       		 <p class="ff_style">Use Current Location to view weather</p>
-      		 <p ><a style="text-decoration: none;font-size: 16px" href="" ng-click="weatherReport(myPosition.latitude,myPosition.longitude,myAddress)">{{myAddress}}</a></p>
+      		 <p ><a class="myAddress_style" style="text-decoration: none" href="" ng-click="weatherReport(myPosition.latitude,myPosition.longitude,myAddress)">{{myAddress}}</a></p>
       		</div>
       </div>
       <div class="col-sm-4">
@@ -64,11 +64,11 @@
               </div>
                   <!--Pop up ends-->
 
-      
+      </div>
     </div>
     <div class="clearfix"></div>
     <hr width="80%" align="center">
-    <span ng-include="" src="'/pages/blog-loader.html'" class="mar_top100" ng-show="weather_loader" style="z-index: 999;margin-bottom: 100px;width: 72%;margin-top:105px;"></span>
+    <span ng-include="" src="'/pages/loader.html'" class="mar_top100" ng-show="weather_loader" style="z-index: 999;margin-bottom: 100px;width: 72%;margin-top:105px;"></span>
     <div class="container">
     	 <!-- <h3>Enter a location:</h3  	 
     	     <input type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
@@ -142,11 +142,15 @@
 	    </div>
 	    <div class="col-sm-4 pull-right" style="background-color: rgb(248,248,248);border-radius: 15px;margin-right: -37px;width: 37%;">
 	    	<div class="searchHistory_style">Search History</div>
-	    	<div style="border-bottom: 1px solid #b9b9b9;margin-bottom: 1px;" class="col-sm-12" ng-repeat="city in SearchHistoryList track by $index">
-	    	<span>{{$index+1}})<a href="" ng-click="weatherReport(city.latitude,city.longitude,city.city)"> {{city.city}}</a></span><p><span class="history_date_style">
-	    	&nbsp; &nbsp; &nbsp;{{city.created_at|date:"short"}}</span><span>
+	    	<div style="border-bottom: 1px solid #b9b9b9;margin-bottom: 1px;" class="col-sm-12 hover_style" ng-repeat="city in SearchHistoryList track by $index">
+	    	  <span>{{$index+1}})<a href="" style="text-decoration: none" ng-click="weatherReport(city.latitude,city.longitude,city.city)"> {{city.city}}</a>
+	    	  </span>
+	    	  <p>
+	    	   <span class="history_date_style">
+	    	    &nbsp; &nbsp; &nbsp;{{city.created_at|date:"short"}}</span><span>
 	    		<a href="" ng-click="searchHistoryDelete(city._id)">Delete</a>
-	    	</span></p>
+	    	  </span>
+	    	  </p>
 	    	</div>
 	    </div>
 	    

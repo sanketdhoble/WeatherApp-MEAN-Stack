@@ -1,4 +1,7 @@
-<div class="container">
+<div ng-hide="loaded">
+       <span ng-include="" src="'/pages/Flash-screen-loader.html'" class="mar_top100" style="z-index: 999;margin-bottom: 100px;width: 72%;margin-top:105px;"></span>
+</div>
+<div ng-show="loaded" class="container">
 	<div class="col-sm-12">	
 	
 
