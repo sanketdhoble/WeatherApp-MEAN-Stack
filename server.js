@@ -31,6 +31,7 @@
     app.get('/getCityLatLong/:city', api.getCityLatLong);
     app.get('/getWeatherReport', api.getWeatherReport);
     app.get('/reverseGeoCoding', api.reverseGeoCoding);
+    app.get('/getLocationTime', api.getLocationTime);
     // routes ======================================================================
     require('./app/routes.js')(app);
 

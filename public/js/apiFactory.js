@@ -46,5 +46,10 @@ angular.module('weatherApp')
     {
         return $http.delete('/searchhistory/delete/'+id);
     }
+    apiFactory.getLocationTime=function(config)
+    {
+        return $http.get('/getLocationTime',config);
+    }
+    
     return apiFactory;
 });

@@ -38,6 +38,16 @@ req.pipe(request({
     json: true
   })).pipe(res);
 }
+exports.getLocationTime = function(req,res){
+console.log(req.query.longitude);
+console.log(req.query.latitude);
+req.pipe(request({
+  url: 'http://api.timezonedb.com/v2/get-time-zone?key=NH89DT70EE2O&format=json&by=position&lat='+req.query.latitude+'&lng='+req.query.longitude,
+    method: req.method,
+    json: true
+  })).pipe(res);
+}
+//http://api.timezonedb.com/v2/get-time-zone?key=NH89DT70EE2O&format=json&by=position&lat=34.05&lng=118.2437
 //https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
 //http://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=7&APPID=61675b5c6ab3c1cc1003df821db4ba78
 //http://api.apixu.com/v1/forecast.json?key=670109f3395349e8ac9192003172206&q=

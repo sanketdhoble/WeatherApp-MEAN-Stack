@@ -111,9 +111,9 @@ border-color: #efefef;
  
 }
 /*background-color: rgb(248,248,248);*/
-.report_morning{border-radius:15px;margin-left: -25px;color:black; background-image: url("../images/morning.jpg");background-position: center center;background-size:cover;}
-.report_afternoon{border-radius:15px;margin-left: -25px;color:white; background-image: url("../images/afternoon.jpg");background-position: center center;background-size:cover;}
-.report_night{border-radius:15px;margin-left: -25px; color: white; background-image: url("../images/night.jpg");background-position: center center;background-size:cover;}
+.report_morning{border-radius:15px;color:black; background-image: url("../images/morning.jpg");background-position: center center;background-size:cover;}
+.report_afternoon{border-radius:15px;color:white; background-image: url("../images/afternoon.jpg");background-position: center center;background-size:cover;}
+.report_night{border-radius:15px; color: white; background-image: url("../images/night.jpg");background-position: center center;background-size:cover;}
 .history_box{background-color: rgb(248,248,248);border-radius: 15px;margin-right: -37px;width: 37%;}
 div.hover_style:hover {
     background-color: #E3E3E3;

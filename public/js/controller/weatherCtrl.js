@@ -8,16 +8,7 @@ weatherApp.controller('weatherCtrl', function($scope,$rootScope,$timeout,$geoloc
         $scope.afternoon=false;
         $scope.night=false;
         //change background image according to time
-        if($scope.date.getHours()>6&&$scope.date.getHours()<12)
-        {
-          $scope.morning=true;
-        }
-        else if($scope.date.getHours()>12&&$scope.date.getHours()<18)
-        {
-          $scope.afternoon=true;
-        }
-        else
-          $scope.night=true;
+       
 
        $rootScope.userName=localStorage.userName;
        $rootScope.userId=localStorage.userId;
@@ -119,7 +110,8 @@ weatherApp.controller('weatherCtrl', function($scope,$rootScope,$timeout,$geoloc
           $scope.weather_loader=true;
           $scope.show_report=false;
           $scope.weatherReport($scope.latitude,$scope.longitude,$scope.fullAddress);
-          $scope.searchHistoryAdd($scope.latitude,$scope.longitude,$scope.fullAddress)
+          $scope.searchHistoryAdd($scope.latitude,$scope.longitude,$scope.fullAddress);
+          
           })
           .catch(function(response) {  
               if(response.status==403)
@@ -138,6 +130,64 @@ weatherApp.controller('weatherCtrl', function($scope,$rootScope,$timeout,$geoloc
               }
             })
          }
+         $scope.getLocationCurrentTime=function(latitude,longitude)
+         {
+            var config={
+                params:{
+                  'latitude':latitude,  
+                  'longitude':longitude                
+                   }
+                }
+
+                console.log(config);
+            apiFactory.getLocationTime(config)
+              .then(function (response) {
+                $scope.locationDate = response.data.timestamp*1000;
+                $scope.locationDate=$scope.locationDate-19800000;//GMT->5:30
+                //var dte=new Date($scope.locationDate);
+                console.log($scope.locationDate);
+                var dte=new Date($scope.locationDate);
+                 if(dte.getHours()>5&&dte.getHours()<12)
+                  {
+                    $scope.morning=true;
+                    $scope.afternoon=false;
+                    $scope.night=false;
+                  }
+                  else if(dte.getHours()>12&&dte.getHours()<19)
+                  {
+                    $scope.morning=false;
+                    $scope.afternoon=true;
+                    $scope.night=false;
+                  }
+                  else
+                  {
+                    $scope.morning=false;
+                    $scope.afternoon=false;
+                    $scope.night=true;
+                  }
+
+
+
+               })
+                .catch(function(response) {   
+                   if(response.status==403)
+                  {
+                    console.log("session Expired, Login again");
+                    $location.search({});
+                    $location.path('/login');
+                    delete localStorage.session;
+                  }  
+                   else if(response.status==404)
+                    {
+                      $window.alert("Check your Internet Connection/page not found");
+                    }
+                    else if(response.status==500){
+                       $window.alert("Something went wrong!!");
+                    }
+                  })
+
+         }
+          
             
             $scope.weatherReport=function(latitude,longitude,city)
             {
@@ -150,6 +200,7 @@ weatherApp.controller('weatherCtrl', function($scope,$rootScope,$timeout,$geoloc
                   'longitude':longitude                
                    }
                 }
+                $scope.getLocationCurrentTime(latitude,longitude);
                 apiFactory.getWeatherReport(config)
                 .then(function (response) {
                   $scope.weatherData = response.data;
